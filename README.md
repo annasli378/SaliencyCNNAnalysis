@@ -1,22 +1,53 @@
 # Saliency CNN Analysis
-Attention analysis of convolutional neural networks for classification of skin ultrasound images
 
-## About
+<!-- PROJECT LOGO -->
+<br />
+  <p align="left">
+Attention analysis of convolutional neural networks for classification of skin ultrasound images
+</p>
+
+<!-- TABLE OF CONTENTS -->
+<details open="open">
+  <summary><h2 style="display: inline-block">Table of Contents</h2></summary>
+  <ol>
+    <li>
+      <a href="#about-the-project">About The Project</a>
+      <ul>
+        <li><a href="#dataset">Dataset</a></li>
+        <li><a href="#models">Models</a></li>
+        <li><a href="#saliency-methods">Saliency methods</a></li>
+        <li><a href="#saliency-based-evaluation">Saliency based evaluation</a></li>
+        <li><a href="#examples">Examples</a></li>
+        <li><a href="#summary">Summary</a></li>
+      </ul>
+    </li>
+    <li>
+      <a href="#getting-started">Getting Started</a>
+      <ul>
+        <li><a href="#prerequisites">Prerequisites</a></li>
+        <li><a href="#installation">Installation</a></li>
+      </ul>
+    </li>
+    <li><a href="#bibliography">Bibliography</a></li>
+  </ol>
+</details>
+
+<!-- ABOUT THE PROJECT -->
+## About The Project
+
 When verifying the performance of neural networks, the issues of interpretability (interpreting), explainability (explaining) or understanding of artificial intelligence systems are raised. The latter is most often defined as the ability to characterize the model's behavior, its functioning, without penetrating the internal structure.
 
 **Interpretability** - how easy it is for a person to understand why the model made a particular decision, i.e. assigned a specific label to the data being classified. In the case of images or texts, this concept can be defined as the mapping of the model's prediction (i.e., an abstract label, concept) to a known set of input data - pixels or separate words. 
 
 **Explanation**  - a set of features from the interpreted domain, on the basis of which a decision was made. A graphical representation of such an explanation can be, for example, a heat map (HM), also known as an attention map. It provides a visual representation of which regions of the image have the greatest influence on a given classification, i.e. the assignment of a selected label by the model
 
-## Dataset
+### Dataset
 
 Dataset source:
-
 https://data.mendeley.com/datasets/5p7fxjt7vs/1
 
 The analyzed data was recorded with a DUB SkinSkanner 75 camera and originally had dimensions of 2067 by 1555 pixels. The images were from both the areas lesions, as well as from healthy forearm skin in the case of the control group. Based on the segmented areas of epidermis, tumor lesions and SLEB layer were then used to obtain skin layer maps, used in the subsequent analysis of the focus areas of models taught to recognize selected classes on HFUS images.
 
-## Methods
 
 ### Models
 
@@ -28,7 +59,7 @@ Four architectures, often used in medical image analysis issues, were selected f
 
 A k-fold cross-validation (k=5) was applied during the study. All images had a target size of 224 × 224 pixels. 
 
-Transfer learning (ImageNet dataset) and also data augmentation (rotation and reflection in the vertical axis) were applied.
+Transfer learning (ImageNet dataset) and also data augmentation (rotation and reflection in the vertical axis) were applied. 
 
 ### Saliency methods
 
@@ -49,9 +80,16 @@ Two methods were used to cover pixels in the original images:
 - darkening by applying a heat map to the image,
 - pixel zeroing by applying a binary mask obtained from thresholding the map
 
-A decrease in the confidence of the classification of the changed area indicates that most likely the heat map or mask has covered most of the area relevant for classification. If confidence has not dropped, the HM or mask does not provide full information about the area on which the model is focused on. There is also the possibility that after removing the area in question, the remaining portion is enough to make a good classification, for example, if the mask is too small. If classification confidence does not increase after removing insignificant areas, it may be due to the method covering too much area or it may be due to the fact that the attention map does not give full information about the focus areas.
+A decrease in the confidence of the classification of the changed area indicates that most likely the heat map or mask has covered most of the area relevant for classification. If confidence has not dropped, the HM or mask does not provide full information about the area on which the model is focused on. There is also the possibility that after removing the area in question, the remaining portion is enough to make a good classification, for example, if the mask is too small. If classification confidence does not increase after removing insignificant areas, it may be due to the method covering too much area or it may be due to the fact that the attention map does not give full information about the focus areas. 
 
-## Results
+
+![Obraz4](https://github.com/annasli378/FuzzyLogicAutismSymptomsAnalysis/blob/main/predAut.png)
+
+
+### Examples
+
+
+### Summary
 
 In order to evaluate the learned models, their performance was tested on a test set of 126 samples:
 | model | accuracy [%] | precision [%]  | recall [%]  | f1-score [%]  |
@@ -68,10 +106,26 @@ RYS
 Summary of localization results for selected methods: positive attributions (darker color) and negative attributions (lighter color):
 RYS
 
-### Examples
 
 
-### Summary
+<!-- GETTING STARTED -->
+## Getting Started
+
+To get a local copy up and running follow these simple steps.
+
+### Prerequisites
+To build this project, you require:
+* MATLAB with Fuzzy Logic Toolbox Add-On
+https://www.mathworks.com/matlabcentral/fileexchange/6434-fuzzy-logic-toolbox-add-on
+
+### Installation
+1. Clone the repo
+   ```sh
+   git clone https://github.com/annasli378/SaliencyCNNAnalysis.git
+   ```
+2. Open project in python envirement
+3. Run 
+
 
 ## Bibliography
 
@@ -142,6 +196,21 @@ A. Shrikumar, P. Greenside, A. Kundaje`
 https://christophm.github.io/interpretable-ml-book <br>
 `Interpretable Machine Learning
 C. Molnar`
+
+
+
+
+
+
+
+
+
+
+
+
+<!-- README created using the following template -->
+<!-- https://github.com/othneildrew/Best-README-Template -->
+
 
 
 
