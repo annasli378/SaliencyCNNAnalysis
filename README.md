@@ -48,7 +48,6 @@ https://data.mendeley.com/datasets/5p7fxjt7vs/1
 
 The analyzed data was recorded with a DUB SkinSkanner 75 camera and originally had dimensions of 2067 by 1555 pixels. The images were from both the areas lesions, as well as from healthy forearm skin in the case of the control group. Based on the segmented areas of epidermis, tumor lesions and SLEB layer were then used to obtain skin layer maps, used in the subsequent analysis of the focus areas of models taught to recognize selected classes on HFUS images.
 
-
 ### Models
 
 Four architectures, often used in medical image analysis issues, were selected for the study. The selected models are:
@@ -63,6 +62,17 @@ Transfer learning (ImageNet dataset) and also data augmentation (rotation and re
 
 ### Saliency methods
 
+Choosen saliency methods can be divided as below:
+
+|                         | **general maps** | **detailed maps**                                 |
+|-------------------------|------------------|---------------------------------------------------|
+| **based on gradients**  | EigenGrad-CAM    | GradientShap                                      |
+|                         | Grad-CAM         | Integrated Gradients                              |
+|                         | Grad-CAM++       | Saliency                                          |
+|                         | HiRes-CAM        |                                                   |
+| **not using gradients** | Ablation-CAM     | Occlusion (detail will depend on the window used) |
+|                         | Score-CAM        |                                                   |
+
 
 ### Saliency based evaluation
 The selected evaluation criteria, determined by the performance of the model on the test set, take into account:
@@ -71,6 +81,11 @@ The selected evaluation criteria, determined by the performance of the model on 
 - the performance of the model on the test set.
 
 Localization ability was assessed by the Hit Rate, which determines the hits of the peak of the relevance map to the relevant regions of the skin layer map. The calculation method took into account gradual changes in the importance of regions and scored hits on a scale of 3 to -1. It also partially rewarded in this way the focus of the model on regions below the most important area.
+
+![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/hit_rate1_hm_slm__opis.png)
+![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/hit_rate_hm__opis.png)
+
+
 
 The resolution of the model was determined by the degree to which it focuses on the most important elements of the image. It was determined in two ways, based directly on the heat map and on the masks generated from it. 
 
@@ -83,7 +98,6 @@ Two methods were used to cover pixels in the original images:
 A decrease in the confidence of the classification of the changed area indicates that most likely the heat map or mask has covered most of the area relevant for classification. If confidence has not dropped, the HM or mask does not provide full information about the area on which the model is focused on. There is also the possibility that after removing the area in question, the remaining portion is enough to make a good classification, for example, if the mask is too small. If classification confidence does not increase after removing insignificant areas, it may be due to the method covering too much area or it may be due to the fact that the attention map does not give full information about the focus areas. 
 
 
-![Obraz4](https://github.com/annasli378/FuzzyLogicAutismSymptomsAnalysis/blob/main/predAut.png)
 
 
 ### Examples
@@ -100,11 +114,13 @@ In order to evaluate the learned models, their performance was tested on a test 
 | ResNet101 | 95.28  | 95.25  | 95.28  | 95.10  |
 
 Summary of localization results for selected CAM methods:
-RYS
+
+![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/hitrate1_pos.png)
 
 
 Summary of localization results for selected methods: positive attributions (darker color) and negative attributions (lighter color):
-RYS
+
+![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/hitrate1neg.png)
 
 
 
