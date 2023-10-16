@@ -80,11 +80,10 @@ The selected evaluation criteria, determined by the performance of the model on 
 - proper identification of details in the image, determined by the coverage of the heat map and skin layer map,
 - the performance of the model on the test set.
 
-Localization ability was assessed by the Hit Rate, which determines the hits of the peak of the relevance map to the relevant regions of the skin layer map. The calculation method took into account gradual changes in the importance of regions and scored hits on a scale of 3 to -1. It also partially rewarded in this way the focus of the model on regions below the most important area.
+Localization ability was assessed by the Hit Rate, which determines the hits of the peak of the relevance map to the relevant regions of the skin layer map. The calculation method took into account gradual changes in the importance of regions and scored hits on a scale of 3 to -1. It also partially rewarded in this way the focus of the model on regions below the most important area:
 
-![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/hit_rate1_hm_slm__opis.png)
 ![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/hit_rate_hm__opis.png)
-
+![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/hit_rate1_hm_slm__opis.png)
 
 
 The resolution of the model was determined by the degree to which it focuses on the most important elements of the image. It was determined in two ways, based directly on the heat map and on the masks generated from it. 
@@ -95,13 +94,20 @@ Two methods were used to cover pixels in the original images:
 - darkening by applying a heat map to the image,
 - pixel zeroing by applying a binary mask obtained from thresholding the map
 
+| **orginal image**   | **the most important parts covered** | **non-essential elements covered**                                 |
+|-------------------------|------------------|---------------------------------------------------|
+| ![org](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/pewniosci_obr_org.png)| ![import](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/pewniosci_obr_zakr_wazne_hm.png)| ![nonimport](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/pewniosci_obr_zakr_nw_hm.png)       |
+
 A decrease in the confidence of the classification of the changed area indicates that most likely the heat map or mask has covered most of the area relevant for classification. If confidence has not dropped, the HM or mask does not provide full information about the area on which the model is focused on. There is also the possibility that after removing the area in question, the remaining portion is enough to make a good classification, for example, if the mask is too small. If classification confidence does not increase after removing insignificant areas, it may be due to the method covering too much area or it may be due to the fact that the attention map does not give full information about the focus areas. 
 
 
-
-
 ### Examples
+Below you can see the results for the ResNet network and the best methods studied: 
 
+
+| **Ablation-CAM**   | **Grad-CAM++** | **Score-CAM**                                 |
+|-------------------------|------------------|---------------------------------------------------|
+| ![org](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/resnet_1___2018-10-15_11_1_abl.png)| ![import](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/resnet_1___2018-10-15_11_1_gc++.png)| ![nonimport](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/resnet_1___2018-10-15_11_1_sc.png)       |
 
 ### Summary
 
@@ -131,17 +137,19 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 To build this project, you require:
-* MATLAB with Fuzzy Logic Toolbox Add-On
-https://www.mathworks.com/matlabcentral/fileexchange/6434-fuzzy-logic-toolbox-add-on
+* Python with installed the required libraries: pytorch, PIL, numpy, matplotlib...
+* For evaluation files you may need Matlab
 
 ### Installation
 1. Clone the repo
    ```sh
    git clone https://github.com/annasli378/SaliencyCNNAnalysis.git
    ```
-2. Open project in python envirement
-3. Run 
-
+2. Open project in python environment (i.e PyCharm)
+4. For training models run 'model_train_and_save'
+5. For generating heatmaps run 'CAMs' and 'HeatMapsCaptum'
+6. For confinence check run 'confidence_check_for_models' and 'confidence_check_for_models_heatmap_masks'
+7. Finally, to calculate selected indicators, check out Matlab files.
 
 ## Bibliography
 
