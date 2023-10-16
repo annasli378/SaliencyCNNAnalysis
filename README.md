@@ -136,8 +136,9 @@ Summary of localization results for selected methods: positive attributions (dar
 
 ![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/hitrate1neg.png)
 
-How can it be used in evaluating CNNs?
+**How can it be used in evaluating CNNs?**
 
+![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/pewnosci_schemat_postepowania.png)
 
 ![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/schemat_analiza_modelu(1).png)
 
