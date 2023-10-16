@@ -74,6 +74,14 @@ Choosen saliency methods can be divided as below:
 |                         | Score-CAM        |                                                   |
 
 
+The following were used to determine heat maps:
+
+https://github.com/pytorch/captum
+
+https://github.com/jacobgil/pytorch-grad-cam
+
+
+
 ### Saliency based evaluation
 The selected evaluation criteria, determined by the performance of the model on the test set, take into account:
 - correct localization of areas by the model, as determined by the Hit Rate parameter,
