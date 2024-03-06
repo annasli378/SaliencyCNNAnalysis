@@ -127,21 +127,12 @@ In order to evaluate the learned models, their performance was tested on a test 
 | MobileNet v2  | 94.44  | 94.99  | 94.44  | 93.92 |
 | ResNet101 | 95.28  | 95.25  | 95.28  | 95.10  |
 
-Summary of localization results for selected CAM methods:
-
-![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/hitrate1_pos.png)
-
-
-Summary of localization results for selected methods: positive attributions (darker color) and negative attributions (lighter color):
-
-![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/hitrate1neg.png)
 
 **How can it be used in evaluating CNNs?**
 
 ![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/pewnosci_schemat_postepowania.png)
 
 ![HR_CAM](https://github.com/annasli378/SaliencyCNNAnalysis/blob/main/images/schemat_analiza_modelu(1).png)
-
 
 
 <!-- GETTING STARTED -->
@@ -151,8 +142,8 @@ To get a local copy up and running follow these simple steps.
 
 ### Prerequisites
 To build this project, you require:
-* Python with installed the required libraries: pytorch, PIL, numpy, matplotlib...
-* For evaluation files you may need Matlab
+* Python with installed the required libraries: pytorch, PIL, numpy, matplotlib, captum and pytorch-grad-cam
+* For evaluation files (calculating hit rate etc.) you may need Matlab
 
 ### Installation
 1. Clone the repo
